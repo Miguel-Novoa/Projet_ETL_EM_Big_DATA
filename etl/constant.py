@@ -35,3 +35,24 @@ COUNTRY_LANGUAGE_COL_DICT={
      "IsOfficial": "is_official_language",
      "Percentage": "language_percentage"
 }
+
+JOIN_TYPE="left"
+SPEC_COLS=[
+     "country_code",
+     "country_name",
+     "region",
+     "surface_area",
+     "independence_year",
+     "country_population",
+     "life_expectancy",
+     "local_name",
+     "head_of_state",
+     "capital",
+     "country_code_2",
+     "city_id",
+     "city_name",
+     "city_district",
+     "city_population",
+     "language",
+     "is_official_language",
+]
