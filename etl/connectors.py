@@ -1,0 +1,1 @@
+#connectors.py --> connecteur pour chaques types de fichiers
