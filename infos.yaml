@@ -1,0 +1,42 @@
+sources:
+  - type: file
+    path: path/to/textfile.txt
+  - type: file
+    path: path/to/jsonfile.json
+  - type: database
+    connection_string: your_db_connection_string
+  - type: api
+    endpoint: https://api.example.com/data
+  - type: html
+    url: https://example.com/data.html
+    xpath: //table[@class='data-table']/tr
+  - type: xml
+    path: path/to/data.xml
+    xpath: /root/data
+    
+transforms:
+  - type: filter
+    condition: "column_name > 100"
+  - type: fill_missing
+    columns:
+      - column_name
+  - type: correct_aberrant
+    columns:
+      - column_name
+  - type: calculate
+    operation: "column_name1 + column_name2"
+    new_column: "result"
+  - type: normalize
+    columns:
+      - column_name
+    normalization_type: "uniform_type"
+  - type: add_attribute
+    attribute_name: "new_attribute"
+    attribute_value: "value"
+
+destinations:
+  - type: database
+    connection_string: your_db_connection_string
+  - type: file
+    format: json
+    path: path/to/output.json
