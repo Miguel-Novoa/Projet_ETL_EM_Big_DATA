@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Durant cette semaine, le projet qjhhhhhhue vous aurez à réaliser consiste à écrire un outil de manipulation des données, souvent appelé ETL (acronyme de Extract-Transform-Load).
+Durant cette semaine, le projet que vous aurez à réaliser consiste à écrire un outil de manipulation des données, souvent appelé ETL (acronyme de Extract-Transform-Load).
 
 Le but de ce projet est, naturellement, de produire un logiciel, mais il doit surout être le support de méthodologies de travail de groupe. Nous allons ici détailler les deux aspects de ce travail.
 
