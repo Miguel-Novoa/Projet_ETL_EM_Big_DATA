@@ -27,6 +27,8 @@ Once the virtual environment is activated, install the project dependencies usin
     pip install pandas
     pip install sqlalchemy
     pip install lxml
+    pip install xml
+    pip install lxml beautifulsoup4 sqlalchemy
 
 ## ## Running the Project
 
