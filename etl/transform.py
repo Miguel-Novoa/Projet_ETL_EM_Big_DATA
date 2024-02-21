@@ -1,34 +1,83 @@
-#transform.py --> transformation pour chaques fichiers
-
-
-import pandas as pd
+import csv
 import json
+import os
+import sys
+import xml.etree.ElementTree as ET
+from xml.dom import minidom
 
-def etl_csv_to_json(csv_file, json_file):
-    # Extract - Charger les données CSV dans un DataFrame
-    df = pd.read_csv(csv_file)
-
-    # Transform - Convertir le DataFrame en format JSON
-    json_data = df.to_json(orient='records', lines=True)
-
-     # Load - Sauvegarder le JSON dans un fichier
-    with open(json_file, 'w') as json_output:
-        json_output.write(json_data)
-        
+def read_csv(input_file_path):
     data = []
-    with open(json_file, 'r') as f:
-        for line in f:
-            record = json.loads(line)
-            data.append(record)
-            print(json.dumps(record, indent=4))
+    with open(input_file_path, 'r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data.append(row)
+    return data
 
-    with open(json_file, 'w') as f:
+def write_json(data, output_file_path):
+    with open(output_file_path, 'w') as f:
         json.dump(data, f, indent=4)
 
+def write_xml(data, output_file_path):
+    root = ET.Element("data")
+    for record in data:
+        record_element = ET.SubElement(root, "record")
+        for key, value in record.items():
+            field_element = ET.SubElement(record_element, key)
+            field_element.text = str(value)
+    xmlstr = minidom.parseString(ET.tostring(root)).toprettyxml(indent="    ")
+    with open(output_file_path, 'w') as f:
+        f.write(xmlstr)
 
-# Exemple d'utilisation
-csv_file_path = '../in/titanic_50.csv'
-json_file_path = '../out/titanic_50.json'
+def write_html(data, output_file_path):
+    with open(output_file_path, 'w') as f:
+        f.write("<html>\n")
+        f.write("<head><title>Titanic Data</title></head>\n")
+        f.write("<body>\n")
+        f.write("<table border='1'>\n")
+        f.write("<tr>\n")
+        for key in data[0].keys():
+            f.write(f"    <th>{key}</th>\n")
+        f.write("</tr>\n")
+        for record in data:
+            f.write("<tr>\n")
+            for value in record.values():
+                f.write(f"    <td>{value}</td>\n")
+            f.write("</tr>\n")
+        f.write("</table>\n")
+        f.write("</body>\n")
+        f.write("</html>\n")
 
-etl_csv_to_json(csv_file_path, json_file_path)
+def main():
+    if len(sys.argv) < 4:
+        print("Utilisation: python transform.py <fichier_csv> --input-format <format> --output-formats <formats>")
+        sys.exit(1)
 
+    input_file_path = sys.argv[1]
+    output_formats = sys.argv[5:]
+
+    input_file_name = os.path.splitext(os.path.basename(input_file_path))[0]
+
+    data = read_csv(input_file_path)
+
+    if not output_formats:
+        print("Aucun format de sortie spécifié.")
+        sys.exit(1)
+
+    for format in output_formats:
+        if format == 'json':
+            output_file_path = os.path.join('../out', f"{input_file_name}_{format}.{format}")
+            write_json(data, output_file_path)
+            print(f"Fichier JSON généré : {output_file_path}")
+        elif format == 'xml':
+            output_file_path = os.path.join('../out', f"{input_file_name}_{format}.{format}")
+            write_xml(data, output_file_path)
+            print(f"Fichier XML généré : {output_file_path}")
+        elif format == 'html':
+            output_file_path = os.path.join('../out', f"{input_file_name}_{format}.{format}")
+            write_html(data, output_file_path)
+            print(f"Fichier HTML généré : {output_file_path}")
+        else:
+            print(f"Format de sortie non pris en charge : {format}")
+
+if __name__ == "__main__":
+    main()
