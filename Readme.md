@@ -36,4 +36,3 @@ To test data conversion, use the `transform.py` script. Specify the input and ou
     python transform.py ../in/{nom du fichier} {liste formats sortie ex : csv,xml,html} {format_entrée}
 
 This command indicates that the CSV file `titanic_50.csv` should be converted to the TXT format with the name `titanic_50.txt`.
->>>>>>> a51ee3c14fabd4a24addbfbe5ce55ceecb834a79
