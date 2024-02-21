@@ -10,12 +10,12 @@ This project aims to develop an ETL (Extract, Transform, Load) tool in Python, p
 
 It is highly recommended to use a virtual environment to isolate the project dependencies. To create and activate a virtual environment, use the following commands:
 
-For Windows:
+**For Windows:**
 
      python -m venv venv
      venv\Scripts\activate
 
-For Mac/Linux:
+**For Mac/Linux:**
 
     python3 -m venv venv
     source venv/bin/activate 
@@ -27,12 +27,30 @@ Once the virtual environment is activated, install the project dependencies usin
     pip install pandas
     pip install sqlalchemy
     pip install lxml
-    pip install lxml beautifulsoup4 sqlalchemy 
 
-## Running the Project
+## ## Running the Project
 
-To test data conversion, use the `transform.py` script. Specify the input and output file formats with the `--input-format` and `--output-format` options. Here is an example command:
+To test the transformation in the project, use the `transform.py` script. Specify the input and output file formats along with the desired transformation types. 
 
-    python transform.py ../in/{nom du fichier} {liste formats sortie ex : csv,xml,html} {format_entrée}
+**For example, on Mac:**
 
-This command indicates that the CSV file `titanic_50.csv` should be converted to the TXT format with the name `titanic_50.txt`.
+    python3 transform.py ../in/titanic_50_html.html json,xml,csv html
+
+**And on Windows:**
+
+    python transform.py ../in/titanic_50_html.html json,xml,csv html 
+
+This command transforms the `titanic_50_html.html` file into `JSON`, `XML`, and `CSV` formats.
+
+For a more general use case, execute the following command:
+
+**On Mac:**
+
+
+    python3 transform.py ../in/name_files type(s)_of_files_desired_for_transformation type_of_file_entered 
+
+**On Windows:**
+
+    python transform.py ../in/name_files type(s)_of_files_desired_for_transformation type_of_file_entered 
+
+This command tests the transformation project on a specified file, transformation types, and the entered file format.
