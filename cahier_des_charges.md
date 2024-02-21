@@ -62,9 +62,7 @@ Le client souhaite disposer d'un outil ETL écrit en Python qui soit flexible, m
 
 **Taille de l'Équipe** : 4 personnes
 
-**Évaluation du temps de travail** :
-
-**Recettage** :
+**Évaluation du temps de travail** : 1 semaine
 
 **Liste fonctionnelle** :
 
