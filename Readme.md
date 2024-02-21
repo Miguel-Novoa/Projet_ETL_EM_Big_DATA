@@ -1,6 +1,6 @@
 # Welcome to ETL Project - Extract, Transform, Load
 
-![enter image description here](https://pinnsg.com/wp-content/uploads/bb-plugin/cache/etl-img-768x512-circle.jpg)
+(https://pinnsg.com/wp-content/uploads/bb-plugin/cache/etl-img-768x512-circle.jpg)
 
 ## Introduction
 
