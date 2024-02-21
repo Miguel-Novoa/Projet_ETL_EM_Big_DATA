@@ -1,40 +1,21 @@
 #transform.py --> transformation pour chaques fichiers
 
-from pandas import DataFrame
 
+import pandas as pd
 
-def rename_cols(df: DataFrame, mapping_dict: dict) ->DataFrame:
-    # Rename all the columns
-    '''
-    :param df: input dataframe
-    :param mapping_dict: dict of columns names
-    :return: ouput dataframe
-    '''
+def etl_csv_to_json(csv_file, json_file):
+    # Extract - Charger les données CSV dans un DataFrame
+    df = pd.read_csv(csv_file)
 
-    df.rename(columns=mapping_dict,inplace=True)
-    return df
+    # Transform - Convertir le DataFrame en format JSON
+    json_data = df.to_json(orient='records', lines=True)
 
+    # Load - Sauvegarder le JSON dans un fichier
+    with open(json_file, 'w') as json_output:
+        json_output.write(json_data)
 
+# Exemple d'utilisation
+csv_file_path = '../in/titanic_50.csv'
+json_file_path = '../out/titanic_50.json'
 
-def specific_cols(df: DataFrame, specific_cols: list):
-    # get specific cols df
-    '''
-    :param df: input dataframe
-    :param specific_cols: list of columns names
-    :return: ouput dataframe
-    '''
-    return df[specific_cols]
-
-
-
-def join_df(left_df: DataFrame, right_df: DataFrame, ON_COLUMNS:list, JOIN_TYPE: str)->DataFrame:
-    # Join two dataframes
-    '''
-    :param left_df: input dataframe
-    :param right_df: input dataframe
-    :param ON_COLUMNS: list of columns to perform join
-    :param JOIN_TYPE: Join type
-    :return: ouput dataframe
-    '''
-    output_df=left_df.merge(right_df, on=ON_COLUMNS, how=JOIN_TYPE)
-    return output_df
+etl_csv_to_json(csv_file_path, json_file_path)
