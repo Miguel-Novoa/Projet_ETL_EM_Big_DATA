@@ -1,0 +1,7 @@
+pandas
+beautifulsoup4
+sqlalchemy
+mysql-connector-python
+python-dotenv
+
+# Commande: python -m pip install -r requirements.txt
