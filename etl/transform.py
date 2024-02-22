@@ -16,6 +16,9 @@ def read_json(input_file):
 def read_xml(input_file):
     return pd.read_xml(input_file)
 
+def read_txt(input_file):
+    return pd.read_csv(input_file, sep=" ", header=None)
+
 def read_html(input_file):
     df_list = pd.read_html(input_file)  # Returns a list of DataFrames
     # Concatenate all DataFrames into a single DataFrame
@@ -84,6 +87,9 @@ def write_csv(data, output_file):
         # For example, you might want to convert it to a DataFrame first or handle it differently
         print("Data is not a DataFrame. Cannot write to CSV.")
 
+def write_txt(data, output_file):
+    data.to_csv(output_file, sep='\t', index=False)
+
 
 
 def main():
@@ -106,6 +112,8 @@ def main():
         data = read_html(input_file)
     elif input_format == 'sql':
         data = read_sql(input_file)
+    elif input_format == 'txt':
+        data = read_txt(input_file)
     else:
         print("Invalid input format")
         return
@@ -114,30 +122,18 @@ def main():
     for output_format in output_formats:
         output_file = f"../out/titanic_50.{output_format}"
 
-        if isinstance(data, pd.DataFrame):  # Check if data is a DataFrame
-            if output_format == 'json':
-                data.to_json(output_file, orient='records', indent=4)
-            elif output_format == 'csv':
-                data.to_csv(output_file, index=False)
-            elif output_format == 'xml':
-                write_xml(data.to_dict(orient='records'), output_file)  # Convert DataFrame to dictionary before writing XML
-            elif output_format == 'html':
-                write_html(data.values.tolist(), output_file)
-            elif output_format == 'sql':
-                write_sql(data, output_file)
-        else:
-            if output_format == 'json':
-                write_json(data, output_file)
-            elif output_format == 'xml':
-                write_xml(data, output_file)
-            elif output_format == 'html':
-                write_html(data, output_file)
-            elif output_format == 'csv':
-                write_csv(data, output_file)
-            elif output_format == 'sql':
-                write_sql(data, output_file)
-            else:
-                print("Invalid output format")
+        if output_format == 'json':
+            data.to_json(output_file, orient='records', indent=4)
+        elif output_format == 'csv':
+            data.to_csv(output_file, index=False)
+        elif output_format == 'xml':
+            write_xml(data.to_dict(orient='records'), output_file)  # Convert DataFrame to dictionary before writing XML
+        elif output_format == 'html':
+            write_html(data.values.tolist(), output_file)
+        elif output_format == 'sql':
+            write_sql(data, output_file)
+        elif output_format == 'txt':
+            write_txt(data, output_file)
 
 
 if __name__ == "__main__":
