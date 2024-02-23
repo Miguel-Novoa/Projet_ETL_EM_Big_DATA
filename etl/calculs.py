@@ -21,3 +21,25 @@ def calculateMedian(data, fieldName):
 
     return median
 
+def calculateDeviation(data, field):
+    # Convert the data to a DataFrame
+    df = pd.DataFrame(data)
+    
+    # Check if the specified field is present in the DataFrame
+    if field not in df.columns:
+        raise ValueError(f"The field '{field}' is not present in the data.")
+    
+    # Calculate the mean of the specified field
+    mean = df[field].mean()
+    
+    # Calculate the deviations from the mean and add a new column to the DataFrame
+    df['Deviation from Mean'] = df[field] - mean
+    
+    # Round the values in the 'Deviation from Mean' column to two decimal places
+    df['Deviation from Mean'] = df['Deviation from Mean'].round(2)
+    
+    # Ensure that the result is a DataFrame
+    if not isinstance(df, pd.DataFrame):
+        raise ValueError("calculateDeviation did not return a DataFrame.")
+    
+    return df

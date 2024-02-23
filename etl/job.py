@@ -1,10 +1,12 @@
 import sys
-from calculs import calculateMedian
+import pandas as pd
+from calculs import calculateMedian, calculateDeviation
 from read import readData
+from write import writeData
 
 def main():
-    if len(sys.argv) < 5:
-        print("Usage: python job.py <inputFile> <inputFormat> <field> <operation>")
+    if len(sys.argv) < 4:
+        print("Usage: python job.py <inputFile> <inputFormat> <field> <operation> [<outputFile> <outputFormats...>]")
         return
 
     inputFile = sys.argv[1]
@@ -12,17 +14,27 @@ def main():
     field = sys.argv[3]
     operation = sys.argv[4]
 
-    # Read data based on input format
+    # Read the data based on input format
     data = readData(inputFile, inputFormat)
 
-    # Check if the operation is 'median'
+    # Check if the operation is 'median' or 'deviation'
     if operation == 'median':
-        # Calculate median for the specified field
+        # Calculate the median for the specified field
         median = calculateMedian(data, field)
         # Print the median to the console
         print(f"The median of {field} is: {median}")
+    elif operation == 'deviation':
+        if len(sys.argv) < 6:
+            print("Usage: python job.py <inputFile> <inputFormat> <field> <operation> <outputFile> <outputFormats...>")
+            return
+        outputFile = sys.argv[5]
+        outputFormats = sys.argv[6].split(',')
+        # Calculate the deviations from the mean for the specified field
+        dfWithDeviation = calculateDeviation(data, field)
+        # Write the DataFrame with the new column to the output file
+        writeData(outputFile, outputFormats, dfWithDeviation)
     else:
-        print("Invalid operation. Please specify 'median'.")
+        print("Invalid operation. Please specify 'median' or 'deviation'.")
 
 if __name__ == "__main__":
     main()

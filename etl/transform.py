@@ -1,4 +1,4 @@
-import sys
+"""import sys
 import pandas as pd
 import json
 import xml.etree.ElementTree as ET
@@ -138,3 +138,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+"""
