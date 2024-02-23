@@ -43,3 +43,17 @@ def calculateDeviation(data, field):
         raise ValueError("calculateDeviation did not return a DataFrame.")
     
     return df
+
+def segmentDataByMedian(data, fieldName):
+    # Calculate the median
+    median = calculateMedian(data, fieldName)
+
+    # Create a new column to store the groups
+    data['MedianComparison'] = None
+
+    # Assign values to groups based on their proximity to the median
+    data.loc[data[fieldName] < median, 'MedianComparison'] = 'Below Median'
+    data.loc[data[fieldName] == median, 'MedianComparison'] = 'Equal to Median'
+    data.loc[data[fieldName] > median, 'MedianComparison'] = 'Above Median'
+
+    return data

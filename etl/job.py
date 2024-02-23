@@ -1,6 +1,6 @@
 import sys
 import pandas as pd
-from calculs import calculateMedian, calculateDeviation
+from calculs import calculateMedian, segmentDataByMedian, calculateDeviation
 from read import readData
 from write import writeData
 
@@ -17,15 +17,25 @@ def main():
     # Read the data based on input format
     data = readData(inputFile, inputFormat)
 
-    # Check if the operation is 'median' or 'deviation'
+    # Check if the operation is 'median', 'segmentByMedian' or 'deviation'
     if operation == 'median':
         # Calculate the median for the specified field
         median = calculateMedian(data, field)
         # Print the median to the console
         print(f"The median of {field} is: {median}")
+    elif operation == 'segmentByMedian':
+        if len(sys.argv) < 6:
+            print("Usage: python job.py <inputFile> <inputFormat> <field> segmentByMedian <outputFile> <outputFormats...>")
+            return
+        outputFile = sys.argv[5]
+        outputFormats = sys.argv[6].split(',')
+        # Segment the data by median for the specified field
+        segmentedData = segmentDataByMedian(data, field)
+        # Write the segmented data to the output file
+        writeData(outputFile, outputFormats, segmentedData)
     elif operation == 'deviation':
         if len(sys.argv) < 6:
-            print("Usage: python job.py <inputFile> <inputFormat> <field> <operation> <outputFile> <outputFormats...>")
+            print("Usage: python job.py <inputFile> <inputFormat> <field> deviation <outputFile> <outputFormats...>")
             return
         outputFile = sys.argv[5]
         outputFormats = sys.argv[6].split(',')
@@ -34,7 +44,7 @@ def main():
         # Write the DataFrame with the new column to the output file
         writeData(outputFile, outputFormats, dfWithDeviation)
     else:
-        print("Invalid operation. Please specify 'median' or 'deviation'.")
+        print("Invalid operation. Please specify 'median', 'segmentByMedian', or 'deviation'.")
 
 if __name__ == "__main__":
     main()
