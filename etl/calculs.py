@@ -47,13 +47,14 @@ def calculateDeviation(data, field):
 def segmentDataByMedian(data, fieldName):
     # Calculate the median
     median = calculateMedian(data, fieldName)
+    newName = fieldName + 'MedianComparison'
 
     # Create a new column to store the groups
-    data['MedianComparison'] = None
+    data[newName] = None
 
     # Assign values to groups based on their proximity to the median
-    data.loc[data[fieldName] < median, 'MedianComparison'] = 'Below Median'
-    data.loc[data[fieldName] == median, 'MedianComparison'] = 'Equal to Median'
-    data.loc[data[fieldName] > median, 'MedianComparison'] = 'Above Median'
+    data.loc[data[fieldName] < median, newName] = 'Below Median'
+    data.loc[data[fieldName] == median, newName] = 'Equal to Median'
+    data.loc[data[fieldName] > median, newName] = 'Above Median'
 
     return data
