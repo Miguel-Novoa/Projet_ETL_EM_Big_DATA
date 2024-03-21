@@ -73,3 +73,9 @@ For a more general use case, execute the following command:
     python transform.py ../in/name_files type(s)_of_files_desired_for_transformation type_of_file_entered
 
 This command tests the transformation project on a specified file, transformation types, and the entered file format.
+
+
+
+python job.py ../in/titanic_50_json.json json formatJson ../out/titanic_formatted csv,json,html,xml,txt
+
+python job.py ../in/titanic_50_csv.csv csv formatCsv ../out/titanic_formatted csv,json,html,xml,txt     

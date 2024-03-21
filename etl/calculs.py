@@ -1,7 +1,5 @@
 import pandas as pd
 
-import pandas as pd
-
 def calculateMedian(data, fieldName):
     """
     Calculate the median of a specific field in the data.
