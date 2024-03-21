@@ -77,7 +77,7 @@ To calculate the deviation, use the following script. Specify the input file pat
 
     python job.py ../in/titanic.csv csv Age deviation ../out/titanic_output csv,json,xml,txt,html
 
-This command calculate the age deviation in the titanic.csv file, add a column with the deviation value to the dataframe and generate new files containing the new datas in all the requested formats (here : csv, json, xml, txt and html).
+This command calculate the age deviation in the `titanic.csv` file, add a column with the deviation value to the dataframe and generate new files containing the new datas in all the requested formats (here : csv, json, xml, txt and html).
 
 
 
@@ -91,7 +91,7 @@ To use the segmentDataByMedian method, use the following script. Specify the inp
 
     python job.py ../in/titanic.csv csv Age segmentByMedian ../out/titanic_output csv,json,xml,txt,html
 
-This command launch the segmentDataByMedian method for the age field in the titanic.csv file. This method use the calculateMedian method to get the age median, create a new column to store the groups and assign all the values to groups based on their proximity to the median (groups : 'Below Median', 'Equal To Median' and 'Above Median').
+This command launch the segmentDataByMedian method for the age field in the `titanic.csv` file. This method use the calculateMedian method to get the age median, create a new column to store the groups and assign all the values to groups based on their proximity to the median (groups : 'Below Median', 'Equal To Median' and 'Above Median').
 
 
 
@@ -105,7 +105,7 @@ To check empty values and format a json file, use the following script. Specify 
 
     python job.py ../in/titanic_50_json.json json formatJson ../out/titanic_formatted csv,json,html,xml,txt
 
-This command check for empty values in the titanic_50_json.json file, then format this file and generate new files with the formatted datas in all the requested formats (here : csv, json, xml, txt and html).
+This command check for empty values in the `titanic_50_json.json` file, then format this file and generate new files with the formatted datas in all the requested formats (here : csv, json, xml, txt and html).
 
 
 
@@ -119,7 +119,7 @@ To check empty values and format a csv file, use the following script. Specify t
 
     python job.py ../in/titanic_50.csv csv formatCsv ../out/titanic_formatted csv,json,html,xml,txt  
    
-This command check for empty values in the titanic_50.csv file, then format this file and generate new files with the formatted datas in all the requested formats (here : csv, json, xml, txt and html).
+This command check for empty values in the `titanic_50.csv` file, then format this file and generate new files with the formatted datas in all the requested formats (here : csv, json, xml, txt and html).
 
 
 
@@ -133,7 +133,7 @@ To filter all data by the desired value in the desired field, use the following 
 
     python job.py ../in/titanic_50.csv csv filterEqual Survived 0 ../out/titanic_formatted csv,json,html,xml,txt
 
-This command filters all data for which the survived field value is 0 in the titanic_50.csv file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
+This command filters all data for which the survived field value is 0 in the `titanic_50.csv` file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
 
 
 
@@ -147,7 +147,7 @@ To filter all data above the desired value in the desired field use the followin
 
     python job.py ../in/titanic_50.csv csv filterGreater Age 18 ../out/titanic_formatted csv,json,html,xml,txt 
 
-This command filters all data for which the Age field value is greater than 18 in the titanic_50.csv file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
+This command filters all data for which the Age field value is greater than 18 in the `titanic_50.csv` file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
 
 
 
@@ -161,7 +161,7 @@ To filter all data above or equal to the desired value in the desired field use 
 
     python job.py ../in/titanic_50.csv csv filterGreaterOrEqual Age 35 ../out/titanic_formatted csv,json,html,xml,txt
 
-This command filters all data for which the Age field value is greater or equal to 35 in the titanic_50.csv file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
+This command filters all data for which the Age field value is greater or equal to 35 in the `titanic_50.csv` file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
 
 
 
@@ -175,7 +175,7 @@ To filter all data bellow the desired value in the desired field use the followi
 
     python job.py ../in/titanic_50.csv csv filterLess Age 20 ../out/titanic_formatted csv,json,html,xml,txt
 
-This command filters all data for which the Age field value is less than 20 in the titanic_50.csv file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
+This command filters all data for which the Age field value is less than 20 in the `titanic_50.csv` file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
 
 
 
@@ -189,7 +189,7 @@ To filter all data bellow or equal to the desired value in the desired field use
 
     python job.py ../in/titanic_50.csv csv filterLessOrEqual Age 18 ../out/titanic_formatted csv,json,html,xml,txt
 
-This command filters all data for which the Age field value is less or equal to 18 in the titanic_50.csv file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
+This command filters all data for which the Age field value is less or equal to 18 in the `titanic_50.csv` file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
 
 
 
@@ -203,7 +203,7 @@ To filter all data by the desired fields, use the following command. Specify the
 
     python job.py ../in/titanic_50.csv csv filterByFields Age,Survived,Name ../out/titanic_formatted csv,json,html,xml,txt 
 
-This command filters all data in the titanic_50.csv file and generate new files with only the age, survived and name fields datas, in all the requested formats (here : csv, json, xml, txt and html).
+This command filters all data in the `titanic_50.csv` file and generate new files with only the age, survived and name fields datas, in all the requested formats (here : csv, json, xml, txt and html).
 
 
 
