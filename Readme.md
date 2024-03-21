@@ -79,3 +79,13 @@ This command tests the transformation project on a specified file, transformatio
 python job.py ../in/titanic_50_json.json json formatJson ../out/titanic_formatted csv,json,html,xml,txt
 
 python job.py ../in/titanic_50_csv.csv csv formatCsv ../out/titanic_formatted csv,json,html,xml,txt     
+
+python job.py ../in/titanic_50.csv csv filterEqual Survived 0 ../out/titanic_formatted csv,json,html,xml,txt
+
+python job.py ../in/titanic_50.csv csv filterGreater Age 18 ../out/titanic_formatted csv,json,html,xml,txt 
+
+python job.py ../in/titanic_50.csv csv filterGreaterOrEqual Age 35 ../out/titanic_formatted csv,json,html,xml,txt
+
+python job.py ../in/titanic_50.csv csv filterLess Age 20 ../out/titanic_formatted csv,json,html,xml,txt
+
+python job.py ../in/titanic_50.csv csv filterByFields Age,Survived,Name ../out/titanic_formatted csv,json,html,xml,txt 
