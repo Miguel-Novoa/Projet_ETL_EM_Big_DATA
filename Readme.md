@@ -29,6 +29,8 @@ Once the virtual environment is activated, install the project dependencies usin
     pip install lxml
     pip install xml
     pip install lxml beautifulsoup4 sqlalchemy
+    pip install requests
+
 
 ## Initalize the database
 
@@ -89,3 +91,5 @@ python job.py ../in/titanic_50.csv csv filterGreaterOrEqual Age 35 ../out/titani
 python job.py ../in/titanic_50.csv csv filterLess Age 20 ../out/titanic_formatted csv,json,html,xml,txt
 
 python job.py ../in/titanic_50.csv csv filterByFields Age,Survived,Name ../out/titanic_formatted csv,json,html,xml,txt 
+
+api : python job.py https://api.api-onepiece.com/v2/hakis/fr api formatJson ../out/onepiece_formatted csv,json,html 

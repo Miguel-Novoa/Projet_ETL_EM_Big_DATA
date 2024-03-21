@@ -1,5 +1,5 @@
 import pandas as pd
-import json
+import requests
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
 import sqlite3
@@ -15,6 +15,12 @@ def readData(inputFile, inputFormat):
         return readHtml(inputFile)
     elif inputFormat == 'sql':
         return readSql(inputFile)
+    elif inputFormat == 'api':
+        apiDatas = fetchDataFromApi(inputFile)
+        if apiDatas is not None:
+            return pd.DataFrame(apiDatas)  # Convert JSON data to DataFrame
+        else:
+            return None
     else:
         print("Invalid input format")
         return None
@@ -41,3 +47,12 @@ def readSql(inputFile):
     data = cursor.fetchall()
     conn.close()
     return data
+
+def fetchDataFromApi(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data
+    else:
+        print("Erreur lors de la récupération des données de l'API:", response.status_code)
+        return None
