@@ -51,45 +51,168 @@ python etl/init_db.py
 ```
 
 ## ## Running the Project
+Open a console in the "etl" folder and enter all the desired commands in the list bellow.
 
-To test the transformation in the project, use the `transform.py` script. Specify the input and output file formats along with the desired transformation types.
+To test the calculation of the median in the project, use the following script. Specify the input file path and format along with the desired field name and "median".
 
 **For example, on Mac:**
 
-    python3 transform.py ../in/titanic_50_html.html json,xml,csv html
+    python3 job.py ../in/titanic.csv csv Age median
 
 **And on Windows:**
 
-    python transform.py ../in/titanic_50_html.html json,xml,csv html
+    python job.py ../in/titanic.csv csv Age median
 
-This command transforms the `titanic_50_html.html` file into `JSON`, `XML`, and `CSV` formats.
+This command calculate the age median in the `titanic.csv` file and return its value in the console.
 
-For a more general use case, execute the following command:
+
+
+To calculate the deviation, use the following script. Specify the input file path and format, the desired field, "deviation", the output path alongside the desired name for the file (do not specify the file format here !) and all the desired outputs formats.
 
 **On Mac:**
 
-    python3 transform.py ../in/name_files type(s)_of_files_desired_for_transformation type_of_file_entered
+    python3 job.py ../in/titanic.csv csv Age deviation ../out/titanic_output csv,json,xml,txt,html
 
 **On Windows:**
 
-    python transform.py ../in/name_files type(s)_of_files_desired_for_transformation type_of_file_entered
+    python job.py ../in/titanic.csv csv Age deviation ../out/titanic_output csv,json,xml,txt,html
 
-This command tests the transformation project on a specified file, transformation types, and the entered file format.
+This command calculate the age deviation in the titanic.csv file, add a column with the deviation value to the dataframe and generate new files containing the new datas in all the requested formats (here : csv, json, xml, txt and html).
 
 
 
-python job.py ../in/titanic_50_json.json json formatJson ../out/titanic_formatted csv,json,html,xml,txt
+To use the segmentDataByMedian method, use the following script. Specify the input file path and format, the desired field, "segmentByMedian", the output path alongside the desired name for the file (do not specify the file format here !) and all the desired outputs formats.
 
-python job.py ../in/titanic_50_csv.csv csv formatCsv ../out/titanic_formatted csv,json,html,xml,txt     
+**On Mac:**
 
-python job.py ../in/titanic_50.csv csv filterEqual Survived 0 ../out/titanic_formatted csv,json,html,xml,txt
+    python3 job.py ../in/titanic.csv csv Age segmentByMedian ../out/titanic_output csv,json,xml,txt,html
 
-python job.py ../in/titanic_50.csv csv filterGreater Age 18 ../out/titanic_formatted csv,json,html,xml,txt 
+**On Windows:**
 
-python job.py ../in/titanic_50.csv csv filterGreaterOrEqual Age 35 ../out/titanic_formatted csv,json,html,xml,txt
+    python job.py ../in/titanic.csv csv Age segmentByMedian ../out/titanic_output csv,json,xml,txt,html
 
-python job.py ../in/titanic_50.csv csv filterLess Age 20 ../out/titanic_formatted csv,json,html,xml,txt
+This command launch the segmentDataByMedian method for the age field in the titanic.csv file. This method use the calculateMedian method to get the age median, create a new column to store the groups and assign all the values to groups based on their proximity to the median (groups : 'Below Median', 'Equal To Median' and 'Above Median').
 
-python job.py ../in/titanic_50.csv csv filterByFields Age,Survived,Name ../out/titanic_formatted csv,json,html,xml,txt 
 
-api : python job.py https://api.api-onepiece.com/v2/hakis/fr api formatJson ../out/onepiece_formatted csv,json,html 
+
+To check empty values and format a json file, use the following script. Specify the input file path and format, "formatJson", the output path alongside the desired name for the file (do not specify the file format here !) and all the desired outputs formats.
+
+**On Mac:**
+
+    python3 job.py ../in/titanic_50_json.json json formatJson ../out/titanic_formatted csv,json,html,xml,txt
+
+**On Windows:**
+
+    python job.py ../in/titanic_50_json.json json formatJson ../out/titanic_formatted csv,json,html,xml,txt
+
+This command check for empty values in the titanic_50_json.json file, then format this file and generate new files with the formatted datas in all the requested formats (here : csv, json, xml, txt and html).
+
+
+
+To check empty values and format a csv file, use the following script. Specify the input file path and format, "formatJson", the output path alongside the desired name for the file (do not specify the file format here !) and all the desired outputs formats.
+
+**On Mac:**
+
+    python3 job.py ../in/titanic_50.csv csv formatCsv ../out/titanic_formatted csv,json,html,xml,txt  
+
+**On Windows:**
+
+    python job.py ../in/titanic_50.csv csv formatCsv ../out/titanic_formatted csv,json,html,xml,txt  
+   
+This command check for empty values in the titanic_50.csv file, then format this file and generate new files with the formatted datas in all the requested formats (here : csv, json, xml, txt and html).
+
+
+
+To filter all data by the desired value in the desired field, use the following command. Specify the input file and format, "filterEqual", the desired field, the desired value, the output path alongside the desired name for the file (do not specify the file format here !) and all the desired outputs formats.
+
+**On Mac:**
+
+    python3 job.py ../in/titanic_50.csv csv filterEqual Survived 0 ../out/titanic_formatted csv,json,html,xml,txt 
+
+**On Windows:**
+
+    python job.py ../in/titanic_50.csv csv filterEqual Survived 0 ../out/titanic_formatted csv,json,html,xml,txt
+
+This command filters all data for which the survived field value is 0 in the titanic_50.csv file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
+
+
+
+To filter all data above the desired value in the desired field use the following command. Specify the input file and format, "filterGreater", the desired field, the desired value, the output path alongside the desired name for the file (do not specify the file format here !) and all the desired outputs formats.
+
+**On Mac:**
+
+    python3 job.py ../in/titanic_50.csv csv filterGreater Age 18 ../out/titanic_formatted csv,json,html,xml,txt 
+
+**On Windows:**
+
+    python job.py ../in/titanic_50.csv csv filterGreater Age 18 ../out/titanic_formatted csv,json,html,xml,txt 
+
+This command filters all data for which the Age field value is greater than 18 in the titanic_50.csv file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
+
+
+
+To filter all data above or equal to the desired value in the desired field use the following command. Specify the input file and format, "filterGreaterOrEqual", the desired field, the desired value, the output path alongside the desired name for the file (do not specify the file format here !) and all the desired outputs formats.
+
+**On Mac:**
+
+    python3 job.py ../in/titanic_50.csv csv filterGreaterOrEqual Age 35 ../out/titanic_formatted csv,json,html,xml,txt
+
+**On Windows:**
+
+    python job.py ../in/titanic_50.csv csv filterGreaterOrEqual Age 35 ../out/titanic_formatted csv,json,html,xml,txt
+
+This command filters all data for which the Age field value is greater or equal to 35 in the titanic_50.csv file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
+
+
+
+To filter all data bellow the desired value in the desired field use the following command. Specify the input file and format, "filterLess", the desired field, the desired value, the output path alongside the desired name for the file (do not specify the file format here !) and all the desired outputs formats.
+
+**On Mac:**
+
+    python3 job.py ../in/titanic_50.csv csv filterLess Age 20 ../out/titanic_formatted csv,json,html,xml,txt
+
+**On Windows:**
+
+    python job.py ../in/titanic_50.csv csv filterLess Age 20 ../out/titanic_formatted csv,json,html,xml,txt
+
+This command filters all data for which the Age field value is less than 20 in the titanic_50.csv file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
+
+
+
+To filter all data bellow or equal to the desired value in the desired field use the following command. Specify the input file and format, "filterLessOrEqual", the desired field, the desired value, the output path alongside the desired name for the file (do not specify the file format here !) and all the desired outputs formats.
+
+**On Mac:**
+
+    python3 job.py ../in/titanic_50.csv csv filterLessOrEqual Age 18 ../out/titanic_formatted csv,json,html,xml,txt
+
+**On Windows:**
+
+    python job.py ../in/titanic_50.csv csv filterLessOrEqual Age 18 ../out/titanic_formatted csv,json,html,xml,txt
+
+This command filters all data for which the Age field value is less or equal to 18 in the titanic_50.csv file and generate new files with the filtered data in all the requested formats (here : csv, json, xml, txt and html).
+
+
+
+To filter all data by the desired fields, use the following command. Specify the input file and format, "filterByFields", the desired fields, the desired value, the output path alongside the desired name for the file (do not specify the file format here !) and all the desired outputs formats.
+
+**On Mac:**
+
+    python3 job.py ../in/titanic_50.csv csv filterByFields Age,Survived,Name ../out/titanic_formatted csv,json,html,xml,txt 
+
+**On Windows:**
+
+    python job.py ../in/titanic_50.csv csv filterByFields Age,Survived,Name ../out/titanic_formatted csv,json,html,xml,txt 
+
+This command filters all data in the titanic_50.csv file and generate new files with only the age, survived and name fields datas, in all the requested formats (here : csv, json, xml, txt and html).
+
+
+
+**Using an api url instead of a file:**
+
+To use the above commands with an api url instead of a file, use the sames commands but replace the input file path with the api url and replace the input format with "api".
+
+**Example :**
+
+Use of the formatJson command with the one piece api.
+
+    python job.py https://api.api-onepiece.com/v2/hakis/fr api formatJson ../out/onepiece_formatted csv,json,html 
