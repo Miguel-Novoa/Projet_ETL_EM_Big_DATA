@@ -1,7 +1,5 @@
 import pandas as pd
 import requests
-import xml.etree.ElementTree as ET
-from bs4 import BeautifulSoup
 import sqlite3
 
 def readData(inputFile, inputFormat):

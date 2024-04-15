@@ -1,11 +1,7 @@
 import pandas as pd
 import json
-import xml.etree.ElementTree as ET
-from bs4 import BeautifulSoup
 import sqlite3
-from xml.dom.minidom import parse
 from lxml import etree
-import os
 
 def writeData(outputFile, outputFormats, data):
     baseFileName = outputFile
