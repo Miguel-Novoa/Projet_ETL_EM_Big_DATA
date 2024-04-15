@@ -26,8 +26,6 @@ def check_csv_file_and_format_csv(data):
     else:
         print("No missing values in the CSV file.")
 
-    # You can add additional formatting or processing steps for CSV data here if needed
-
     return data
 
 def check_missing_data_and_format_json(data):
